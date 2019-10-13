@@ -1,4 +1,4 @@
 .col {
     background-color: skyblue;
-    margin: 5px;
+    border: solid gray 2px;
 }
