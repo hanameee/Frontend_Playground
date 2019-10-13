@@ -176,7 +176,7 @@ col 에는 `.s1 ~ s12` , `.m1 ~ m12` , `.l1 ~ l12` `.xl1 ~ xl12` 까지 각각 4
 ```
 아래처럼 width에 따라 다른 가로 길이를 가지게 된다.
 
-![columns](../../REACT_study/Udemy/images/columns.png)
+![columns](image/columns.png)
 
 
 
