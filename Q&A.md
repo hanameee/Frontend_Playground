@@ -118,11 +118,124 @@ body {
 UI Framework 소스코드를 까보면 자주 보이는 rem과 em 등등... 뭐하는 애들일까?
 px 말고 다른 단위가 나오면 애써 회피하던 지난날들에 지쳤다면 한번에 정리하고 가자.
 
+
+
 🚩이걸 알기 위해선 - **CSS 단위**를 공부하자.
 
 [참고 링크](https://webclub.tistory.com/356)
 
- 
+
+
+#### 1. 기본 단위 : `px`, `%`
+
+px는 절대값, %는 **부모요소** 에 영향을 받는 상대값
+
+#### 2. `em`, `rem`
+
+`em` : 현재 **자기 자신**의 **font-size** 의 영향을 받는 상대값
+⚠️ 주의할 점 - 자식의 font-size가 정의되지 않았다면 부모의 font-size를 상속받는다.
+
+```html
+<div class="container">
+  container
+  <div class="parent">
+    <div class="child">Child1</div>
+    <div class="child">Child2</div>
+  </div>
+</div>
+```
+
+```css
+body * {
+  border: 2px solid;
+}
+
+.container {
+  width: 60em; /* 10px*60 = 600px */
+  font-size: 10px;
+}
+
+.parent {
+  width: 30em; /* 부모의 font-size를 상속받아 10px*30 = 300px */
+}
+
+.child {
+  width: 50%;
+  font-size: 2em; /* 상속받은 font-size (=10px) 의 2배 = 20px */
+}
+```
+
+em으로 모든 요소의 font-size를 정의하면, 가장 상위 요소의 (이 예제에서는 container) font-size만 변경하면 모든 값을 동시에 상대적으로 변경할 수 있겠지!
+
+특정 조상 요소에 절대적인 값을 (px) 입력해두고, 그 이하는 그 값에 맞게 변형되게 할 때 em을 많이 쓴다.
+
+`rem` : root em = 가장 조상 요소, 즉 **HTML** 태그의 **font-size** 의 영향만을 받는 상대값
+모든 부모에게 차곡차곡 영향을 받아 헷갈리는 em의 단점을 극복하기 위해, 중간 단계의 부모들은 모두 무시하고 오로지 최종 조상의 font-size 영향을 받는 상대값이다.
+
+```css
+html {
+  font-size: 10px;
+}
+
+.container {
+  width: 60em; /* 10px*60 = 600px */
+  font-size: 10px;
+}
+
+.parent {
+  width: 30em; /* 부모의 font-size를 상속받아 10px*30 = 300px */
+}
+
+.child {
+  width: 200rem; /* 10*20 = 200px 임. rem은 중간조상인 parent의 width에는 영향을 받지 않는다 */
+  font-size: 2em; /* 상속받은 font-size (=10px) 의 2배 = 20px */
+}
+```
+
+만약 나중에 전체적인 font-size를 16px로 수정하고 싶다면, html은 가만 놔두고 body (혹은 body 바로 밑의 어떤 요소)의 font-size 값을 16px로 바꿔주면 된다. 이 경우, rem에는 전혀 지장을 주지 않는다!
+
+이렇게 rem이라는 단위를 온전하게 사용할 수 있다. 유용!
+
+#### 3. vw, vh
+
+`vw` : viewport weight `vh` : viewport height
+**viewport**란? 화면에 보이고 있는 size!
+
+```css
+.container {
+  width: 50vw; /* vw는 100단위임. 50vw는 viewport width의 50%를 의미 */
+  height: 200px;
+  background: salmon;
+}
+```
+
+vw (= 100vw) : 온전히 viewport의 가로길이를 다 먹겠다는 말
+vh (= 100vh) : 온전히 viewport의 세로길이를 다 먹겠다는 말
+
+1vw/vh 부터 100 vw/vh 까지 선언한다.
+
+#### 4. vmin, vmax
+
+`vmax`: 현재 화면의 (viewport) 가로/세로 길이 중 더 긴 것을 의미
+`vmin`: 현재 화면의 (viewport) 가로/세로 길이 중 더 긴 것을 의미
+
+```css
+.container {
+  width: 50vmax;
+}
+```
+
+1) viewport의 가로 길이 > 세로 길이인 경우
+
+container의 width = viewport width 의 50%
+
+2) viewport의 가로 길이 < 세로 길이인 경우
+
+container의 width = viewport height 의 50%
+
+vmin은 이 반대겠지 :)
+
+vmin, vmax는 viewport 에 따라 그때그때 기준점으로 삼는 길이가 달라진다는 것! 주의하자.
 
 ### ❕answer
 
