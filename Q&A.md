@@ -2,13 +2,15 @@
 
 ---
 
-# CSS에서 3등분 어케하노...33.3333...%?!
+# CSS에서 완벽한 3등분을 하는 법
 
 ### ❔question
 
 flexbox를 사용한 layout을 짜던 중, content 3개가 width를 나눠먹을때 width를 33.3%로 주니 미묘하게 못생긴 것을 발견...! 😒
 
 검색해보니 역시 나와 같은 고민 (완벽하게 1/3을 먹게 하기) 을 한 외국 찡구들이 스택 오버플로우에 있었다고 한다. 링크는 밑에.
+
+
 
 🚩이걸 알기 위해선
 
@@ -53,9 +55,7 @@ div:nth-of-type(3) { background-color: green }
 </div>
 ```
 
-브라우저 지원율은 95.53% 로, 써도 될 듯 하다. 가장 직관적인 해결 방법.
-
-![image-20191025010808766](../REACT_study/Udemy/images/image-20191025010808766.png)
+caniuse에서 확인한 브라우저 지원율은 95.53%이다! 가장 직관적인 해결 방법.
 
 ### 방법2. Flexbox 사용
 
@@ -89,9 +89,11 @@ body {
 </div>
 ```
 
-⚠️ 하지만, 내가 mostly fluid를 만들 때처럼 하나의 container에 3개만 있는게 아니고 & viewport size에 따라 다양한 레이아웃을 보여주고 싶다면 직접 width를 한땀 한땀 선언해줘야 하기 때문에, flexbox에만 의존할 수는 없다.
+⚠️ 하지만 (mostly fluid pattern 에서처럼) 하나의 container에 3개만 있는게 아니고 & viewport size에 따라 다양한 레이아웃을 주고 싶다면?
 
-### 방법4. 무적권
+그럴땐 직접 width를 한땀 한땀 선언해줘야 하기 때문에 flexbox에만 의존할 수는 없다.
+
+### 방법3. 무적권
 
 무적권 먹히는 방법 그것은 바로 `33.3333333%` 😎
 가끔은 무식한게 도움이 될 때도 있다. 완벽한 1/3은 아닐지라도 적어도 모든 브라우저에서 지원하므로 백업 코드 용으로 선언해두라는 조언.
@@ -120,9 +122,15 @@ px 말고 다른 단위가 나오면 애써 회피하던 지난날들에 지쳤�
 
 
 
-🚩이걸 알기 위해선 - **CSS 단위**를 공부하자.
+🚩이걸 알기 위해선? **CSS 단위**를 공부하자.
 
 [참고 링크](https://webclub.tistory.com/356)
+
+
+
+### ❕answer
+
+키워드 - `CSS단위` `CSSunits`
 
 
 
@@ -225,21 +233,14 @@ vh (= 100vh) : 온전히 viewport의 세로길이를 다 먹겠다는 말
 }
 ```
 
-1) viewport의 가로 길이 > 세로 길이인 경우
-
-container의 width = viewport width 의 50%
-
-2) viewport의 가로 길이 < 세로 길이인 경우
-
-container의 width = viewport height 의 50%
+1) viewport의 가로 길이 > 세로 길이인 경우 : container의 width = viewport width 의 50%
+2) viewport의 가로 길이 < 세로 길이인 경우 : container의 width = viewport height 의 50%
 
 vmin은 이 반대겠지 :)
 
-vmin, vmax는 viewport 에 따라 그때그때 기준점으로 삼는 길이가 달라진다는 것! 주의하자.
+vmin, vmax는 viewport 에 따라 그때그때 기준점으로 삼는 길이가 달라진다는 것에 주의.
 
-### ❕answer
 
-키워드 - `CSS단위`
 
 ---
 
