@@ -310,3 +310,24 @@ SCSS와 SASS의 차이는?
 
 ----
 
+# 내 margin이 먹지 않았던 이유
+
+### ❔question
+
+왜 아래처럼 특정 
+
+🚩이걸 알기 위해선
+
+[참고 링크](https://www.educba.com/sass-vs-scss/) - 영어
+[참고 링크](https://heropy.blog/2018/01/31/sass/) - 한글 설명 짱짱맨
+
+
+
+### ❕answer
+
+키워드 - `scss` `sass` `css preprocessor`
+
+
+
+[margin collapsing 공식 API 문서](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
+
