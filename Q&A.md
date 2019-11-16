@@ -289,7 +289,24 @@ vmin, vmax는 viewport 에 따라 그때그때 기준점으로 삼는 길이가 
 
 키워드 - `scss` `sass` `css preprocessor`
 
+SCSS 란?
 
+- CSS 구문과 완전히 호환되도록 새로운 구문을 도입해 만든
+- Sass의 모든 기능을 지원하는 (Sass 의 ver.3 에서 새롭게 등장한 것이 Scss)
+- CSS의 상위집합(Superset) = CSS의 확장
+- 즉, SCSS는 CSS와 거의 같은 문법으로 Sass 기능을 지원하는 CSS Preprocessor (전처리기)
+
+CSS Preprocessor 이란?
+
+- 웹에서는 CSS 만 동작하지만 CSS는 한계를 가진다
+- 따라서 선택자의 중첩(Nesting)이나 조건문, 반복문, 다양한 단위(Unit)의 연산 표준 CSS 보다 훨씬 많은 기능을 지원하는 전처리기를 사용해서 코드를 작성한 뒤
+- 이렇게 작성한 전처리기를 웹에서 동작 가능한 표준의 CSS로 컴파일(Compile)한다
+
+SCSS와 SASS의 차이는?
+
+문법과 지원 기능이 조금 다르다. 한가지 예시로, Sass는 선택자의 유효범위를 ‘들여쓰기’로 구분하고, SCSS는 `{}`로 범위를 구분한다. 또, Sass는 `;`(세미콜론)을 사용하지 않지만 Scss는 사용한다.
+
+현재는 SCSS의 사용이 보편화되어있음. 따라서 둘의 차이점보다는 CSS Preprocessor에 대한 개념을 이해하는 것이 더 유의미!
 
 ----
 
