@@ -287,7 +287,7 @@ vmin, vmax는 viewport 에 따라 그때그때 기준점으로 삼는 길이가 
 
 ### ❕answer
 
-키워드 - `scss` `sass` `css preprocessor`
+키워드 - `scss` `sass` `css-preprocessor`
 
 SCSS 란?
 
@@ -314,20 +314,17 @@ SCSS와 SASS의 차이는?
 
 ### ❔question
 
-왜 아래처럼 특정 
+분명히 margin을 먹였는데, margin이 먹지 않는 요상한 경우가 있다. 매번 신비로운 CSS의 세계...! 내 margin이 먹지 않았던 이유에 대해서 알아보자.
 
 🚩이걸 알기 위해선
 
-[참고 링크](https://www.educba.com/sass-vs-scss/) - 영어
-[참고 링크](https://heropy.blog/2018/01/31/sass/) - 한글 설명 짱짱맨
+[참고 링크 1 - Margin collapsing 공식 API 문서](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
+[참고 링크 2](https://seungwoohong.tistory.com/26) - 한글 설명
 
 
 
 ### ❕answer
 
-키워드 - `scss` `sass` `css preprocessor`
+키워드 -  `margin-collapsing` `box-model`
 
-
-
-[margin collapsing 공식 API 문서](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
-
+https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
