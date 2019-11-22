@@ -3,7 +3,7 @@
 CSS3이 지원하는 애니메이션 효과의 사용법에 대해 알아보자 💁‍♀️
 
 [참고링크 1 - TCP school.com](http://tcpschool.com/css/css3_transform_animation)
-[참고링크 2 - CSS Animation for Beginners](https://thoughtbot.com/blog/css-animation-for-beginners)
+[참고링크 2 - CSS Animation for Beginners](https://thoughtbot.com/blog/css-animation-for-beginners) : 연습중
 
 ## 1. @keyframes
 
