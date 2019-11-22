@@ -104,3 +104,4 @@ div { animation: myShorthand 3s ease-in-out 1s 3 alternate}
 |    animation-fill-mode    | 애니메이션 효과가 재생 중이 아닐 때 요소의 스타일을 설정함.  |
 |   animation-play-state    |            애니메이션 효과의 재생 상태를 설정함.             |
 
+
