@@ -6,11 +6,8 @@
 
 ### ❔question
 
-flexbox를 사용한 layout을 짜던 중, content 3개가 width를 나눠먹을때 width를 33.3%로 주니 미묘하게 못생긴 것을 발견...! 😒
-
-검색해보니 역시 나와 같은 고민 (완벽하게 1/3을 먹게 하기) 을 한 외국 찡구들이 스택 오버플로우에 있었다고 한다. 링크는 밑에.
-
-
+content 3개가 width를 나눠먹을때 width를 33.3%로 주니 미묘하게 못생긴 것을 발견...! 😒
+어떻게 하면 3개의 column이 완벽하게 1/3이 되도록 줄 수 있을까? 
 
 🚩이걸 알기 위해선
 
@@ -57,9 +54,11 @@ div:nth-of-type(3) { background-color: green }
 
 caniuse에서 확인한 브라우저 지원율은 95.53%이다! 가장 직관적인 해결 방법.
 
++) calc 대신 밑에 나오는 repeat + fr 을 사용할 수도 있겠다.
+
 ### 방법2. Flexbox 사용
 
-2018년이니 Flexbox를 쓰라고...! 지금은 거의 2020년이니 더더욱 flexbox를 쓰자.
+
 flexbox 자체가 width에 꽉 차게 content를 배열해주는거니깐, 존재 자체로 문제 해결.
 
 ```css
@@ -96,7 +95,7 @@ body {
 ### 방법3. 무적권
 
 무적권 먹히는 방법 그것은 바로 `33.3333333%` 😎
-가끔은 무식한게 도움이 될 때도 있다. 완벽한 1/3은 아닐지라도 적어도 모든 브라우저에서 지원하므로 백업 코드 용으로 선언해두라는 조언.
+완벽한 1/3은 아닐지라도 적어도 모든 브라우저에서 지원하므로 백업 코드 용으로 선언해두라는 조언.
 
 ---
 
@@ -240,7 +239,34 @@ vmin은 이 반대겠지 :)
 
 vmin, vmax는 viewport 에 따라 그때그때 기준점으로 삼는 길이가 달라진다는 것에 주의.
 
+#### 5. fr
 
+[참고링크](https://css-tricks.com/introduction-fr-css-unit/)
+
+`fr` : fraction unit 으로, free space ( = 명시적으로 결정된 공간을 제외한 자유공간) 을 몇 **등분** 할지를 정의하는 unit
+
+CSS grid 에서 repeat과 함께 특히 많이 쓰이며, 다른 모든 css unit과 함께 쓸 수 있어서 특히 유용하다.
+
+```css
+.grid {
+  display: grid;
+  /* grid 사이사이의 gap들과, 좌측 250px 을 제외한 나머지 free space 를 12등분 */
+  grid-template-columns: 250px repeat(12, 1fr);
+  grid-column-gap: 10px;
+}
+```
+
+참고 : repeat은 CSS Grid 에서 아래와 같이 쓰인다
+`repeat(number of columns/rows, the column width we want);`
+
+```css
+.grid {
+  /* 좌측 60% 를 제외한 나머지 free space를 1:2로 등분 */
+  grid-template-columns: 60% 1fr 2fr;
+}
+```
+
+![img](https://css-tricks.com/wp-content/uploads/2017/06/percentage-hong-kiat.png)
 
 ---
 
