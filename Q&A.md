@@ -266,7 +266,22 @@ CSS grid 에서 repeat과 함께 특히 많이 쓰이며, 다른 모든 css unit
 }
 ```
 
-![img](https://css-tricks.com/wp-content/uploads/2017/06/percentage-hong-kiat.png)
+![img](https://css-tricks.com/wp-content/uploads/2017/06/percentage-hong-kiat.png) 
+
+repeat() 함수는 2번째 인자를 반복하기 때문에 다음과 같이 사용할 수도 있다.
+
+```css
+.container {
+  grid-template-columns: repeat(4, 100px 200px 50px);
+  /* grid-template-columns: 100px 200px 50px 100px 200px 50px 100px 200px 50px 100px 200px 50px; */
+}
+.container {
+  grid-template-columns: repeat(4, 1fr 2fr 3fr);
+  /* grid-template-columns: 1fr 2fr 3fr 1fr 2fr 3fr 1fr 2fr 3fr 1fr 2fr 3fr; */
+}
+```
+
+
 
 ---
 

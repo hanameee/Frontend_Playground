@@ -1,4 +1,4 @@
-# Flexbox
+# CSS Flex
 
 CSS 3의 새로운 레이아웃 방식 Flexbox 뿌셔뿌셔👊
 
