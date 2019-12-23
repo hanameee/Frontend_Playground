@@ -2,114 +2,67 @@
 
 ---
 
-# CSS에서 완벽한 3등분을 하는 법
-
-### ❔question
-
-content 3개가 width를 나눠먹을때 width를 33.3%로 주니 미묘하게 못생긴 것을 발견...! 😒
-어떻게 하면 3개의 column이 완벽하게 1/3이 되도록 줄 수 있을까? 
-
-🚩이걸 알기 위해선
-
- [참고 링크](https://stackoverflow.com/questions/18781713/css-divide-width-100-to-3-column) - css divide width 100% to 3 column
-
-
-
-### ❕answer
-
-키워드 - `calc()` `flexbox` `grid`
-
-### 방법1. CSS calc 속성 사용
-
-calc 를 사용해서 100/3을 해버리면 된다. 편-안
-
-```css
-body {
-  margin: 0;
-}
-
-div {
-  height: 200px;
-  width: 33.33%; /* 옛날 browser들 중 calc 속성을 먹지 않는 애들을 위한 대비책 */
-  width: calc(100% / 3);
-  display: inline-block;
-}
-
-div:first-of-type { background-color: red }
-div:nth-of-type(2) { background-color: blue }
-div:nth-of-type(3) { background-color: green }
-```
-
-```html
-<div>
-  1
-</div>
-<div>
-  2
-</div>
-<div>
-  3
-</div>
-```
-
-caniuse에서 확인한 브라우저 지원율은 95.53%이다! 가장 직관적인 해결 방법.
-
-+) calc 대신 밑에 나오는 repeat + fr 을 사용할 수도 있겠다.
-
-### 방법2. Flexbox 사용
-
-
-flexbox 자체가 width에 꽉 차게 content를 배열해주는거니깐, 존재 자체로 문제 해결.
-
-```css
-body {
-  margin: 0;
-}
-
-#wrapper {
-  display: flex;
-  height: 200px;
-}
-
-#wrapper > div {
-  flex-grow: 1;
-}
-
-#wrapper > div:first-of-type { background-color: red }
-#wrapper > div:nth-of-type(2) { background-color: blue }
-#wrapper > div:nth-of-type(3) { bac
-```
-
-```html
-<div id="wrapper">
-  <div id="c1"></div>
-  <div id="c2"></div>
-  <div id="c3"></div>
-</div>
-```
-
-⚠️ 하지만 (mostly fluid pattern 에서처럼) 하나의 container에 3개만 있는게 아니고 & viewport size에 따라 다양한 레이아웃을 주고 싶다면?
-
-그럴땐 직접 width를 한땀 한땀 선언해줘야 하기 때문에 flexbox에만 의존할 수는 없다.
-
-### 방법3. 무적권
-
-무적권 먹히는 방법 그것은 바로 `33.3333333%` 😎
-완벽한 1/3은 아닐지라도 적어도 모든 브라우저에서 지원하므로 백업 코드 용으로 선언해두라는 조언.
-
----
-
 # CSS 소스코드에서 보이는 [ -webkit ]은 뭘까? 
-
-`CSS접두어` `크로스 브라우징` `vendor prefixes` `browser prefixes`
 
 🚩이걸 알기 위해선 -  **CSS 접두어**를 공부하자.
 
-[참고 링크](https://mainia.tistory.com/3671) - 블로그 설명
+[참고 링크](https://poiemaweb.com/css3-vendor-prefix) - poiemaweb 벤더 프리픽스
 [참고 링크](https://stackoverflow.com/questions/3468154/what-is-webkit-and-how-is-it-related-to-css) - stackoverflow
 [참고 링크](http://prefixr.com/what-are-vendor-prefixes.php) - What are vendor or web browser prefixes?
 
+### ❕answer
 
+`CSS접두어` `크로스 브라우징` `vendor prefixes` `browser prefixes`
+
+#### Vendor Prefix = 브라우저 업체별 접두사
+
+우리가 사용하는 다양한 웹 브라우저들에선 표준이 아닌, 브라우저 내에서 실험적으로 사용할 만한 기능들을 제공한다.
+
+이런 실험적인 기능들을 업체별 접두사 없이 제공하게 되면, 마치 표준 기술로써 해석될 우려가 있으므로, 업체별 접두사를 통해서 "이 기능은 우리 브라우저에서 실험적으로 제공되는 기능입니다" 라는 것을 나타낸다.
+
+따라서 우리는 이러한 기능을 사용하기 위해서는 벤더 프리픽스(Vendor Prefix)를 사용하여야 한다. 브라우저의 버전이 올라감에 따라 벤더 프리픽스를 사용하지 않아도 될 수 있으나, **구형 브라우저를 지원하기 위해서는 Vendor Prefix 를 사용**해야 할 필요가 있다. 
+
+브라우저 별 벤더 프리픽스는 아래와 같다.
+
+| Browser            | Vendor Prefix |
+| :----------------- | :------------ |
+| IE or Edge         | -ms-          |
+| Chrome             | -webkit-      |
+| Firefox            | -moz-         |
+| Safari             | -webkit-      |
+| Opera              | -o-           |
+| iOS Safari         | -webkit-      |
+| Android Browser    | -webkit-      |
+| Chrome for Android | -webkit-      |
+
+[용례]
+
+```css
+* {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
+```
+
+[용례2 - input placeholder 제어하기]
+
+```css
+.input--text::-webkit-input-placeholder {
+ color: #cacaca;
+}
+.input--text::-ms-input-placeholder {
+ color: #cacaca;
+}
+.input--text::-moz-input-placeholder {
+ color: #cacaca;
+}
+```
+
+
+
+⚠️ 그러나 브라우저는 거의 매달 업데이트가 이루어지고 있고, 모든 브라우저를 위한 벤더 프리픽스를 사용하는 것은 코드의 양을 늘게 한다. 사용하지 않는 벤더 프리픽스를 사용하는 것은 성능에도 영향을 주기에, [Prefix Free 라이브러리](http://leaverou.github.io/prefixfree/)를 사용하면 유용하다.
 
 ---
 # rem, em ... 너 뭐하는 애니
@@ -301,7 +254,7 @@ repeat() 함수는 2번째 인자를 반복하기 때문에 다음과 같이 사
 
 띠용, 갑자기 content: "" display: table 은 왜 나온거지 🤔
 
-🚩이걸 알기 위해선 - 까먹었던 **Float**를 복습하고, **Clearfix**를 다시 정리하자.
+🚩이걸 알기 위해선 - **Float**를 복습하고, **Clearfix**를 다시 정리하자.
 
 [참고 링크](https://takeuu.tistory.com/60)
 
@@ -313,7 +266,7 @@ repeat() 함수는 2번째 인자를 반복하기 때문에 다음과 같이 사
 
 ---
 
-# SCSS 랑 SASS 랑 뭐가 달라여? (멍청)
+# SCSS 랑 SASS 랑 뭐가 다른가?
 
 ### ❔question
 
@@ -322,7 +275,7 @@ repeat() 함수는 2번째 인자를 반복하기 때문에 다음과 같이 사
 🚩이걸 알기 위해선
 
 [참고 링크](https://www.educba.com/sass-vs-scss/) - 영어
-[참고 링크](https://heropy.blog/2018/01/31/sass/) - 한글 설명 짱짱맨
+[참고 링크](https://heropy.blog/2018/01/31/sass/) - 한글
 
 
 
@@ -330,24 +283,24 @@ repeat() 함수는 2번째 인자를 반복하기 때문에 다음과 같이 사
 
 키워드 - `scss` `sass` `css-preprocessor`
 
-SCSS 란?
+#### SCSS 란?
 
 - CSS 구문과 완전히 호환되도록 새로운 구문을 도입해 만든
 - Sass의 모든 기능을 지원하는 (Sass 의 ver.3 에서 새롭게 등장한 것이 Scss)
 - CSS의 상위집합(Superset) = CSS의 확장
 - 즉, SCSS는 CSS와 거의 같은 문법으로 Sass 기능을 지원하는 CSS Preprocessor (전처리기)
 
-CSS Preprocessor 이란?
+#### CSS Preprocessor 이란?
 
 - 웹에서는 CSS 만 동작하지만 CSS는 한계를 가진다
 - 따라서 선택자의 중첩(Nesting)이나 조건문, 반복문, 다양한 단위(Unit)의 연산 표준 CSS 보다 훨씬 많은 기능을 지원하는 전처리기를 사용해서 코드를 작성한 뒤
 - 이렇게 작성한 전처리기를 웹에서 동작 가능한 표준의 CSS로 컴파일(Compile)한다
 
-SCSS와 SASS의 차이는?
+#### 그래서, SCSS와 SASS의 차이는?
 
-문법과 지원 기능이 조금 다르다. 한가지 예시로, Sass는 선택자의 유효범위를 ‘들여쓰기’로 구분하고, SCSS는 `{}`로 범위를 구분한다. 또, Sass는 `;`(세미콜론)을 사용하지 않지만 Scss는 사용한다.
+문법과 지원 기능이 조금 다르다. 일례로, Sass는 선택자의 유효범위를 ‘들여쓰기’로 구분하고, SCSS는 `{}`로 범위를 구분한다. 또, Sass는 `;`(세미콜론)을 사용하지 않지만 Scss는 사용한다.
 
-현재는 SCSS의 사용이 보편화되어있음. 따라서 둘의 차이점보다는 CSS Preprocessor에 대한 개념을 이해하는 것이 더 유의미!
+현재는 SCSS의 사용이 보편화 되어있다. 둘의 차이점보다는 CSS Preprocessor에 대한 개념을 이해하자.
 
 ----
 
@@ -369,3 +322,100 @@ SCSS와 SASS의 차이는?
 키워드 -  `margin-collapsing` `box-model`
 
 https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
+
+---
+
+# CSS에서 완벽한 3등분을 하는 법
+
+### ❔question
+
+content 3개가 width를 나눠먹을때 width를 33.3%로 주니 미묘하게 못생긴 것을 발견...! 😒
+어떻게 하면 3개의 column이 완벽하게 1/3이 되도록 줄 수 있을까? 
+
+🚩이걸 알기 위해선
+
+ [참고 링크](https://stackoverflow.com/questions/18781713/css-divide-width-100-to-3-column) - css divide width 100% to 3 column
+
+
+
+### ❕answer
+
+키워드 - `calc()` `flexbox` `grid`
+
+### 방법1. CSS calc 속성 사용
+
+calc 를 사용해서 100/3을 해버리면 된다. 편-안
+
+```css
+body {
+  margin: 0;
+}
+
+div {
+  height: 200px;
+  width: 33.33%; /* 옛날 browser들 중 calc 속성을 먹지 않는 애들을 위한 대비책 */
+  width: calc(100% / 3);
+  display: inline-block;
+}
+
+div:first-of-type { background-color: red }
+div:nth-of-type(2) { background-color: blue }
+div:nth-of-type(3) { background-color: green }
+```
+
+```html
+<div>
+  1
+</div>
+<div>
+  2
+</div>
+<div>
+  3
+</div>
+```
+
+caniuse에서 확인한 브라우저 지원율은 95.53%이다! 가장 직관적인 해결 방법.
+
++) calc 대신 밑에 나오는 repeat + fr 을 사용할 수도 있겠다.
+
+### 방법2. Flexbox 사용
+
+
+flexbox 자체가 width에 꽉 차게 content를 배열해주는거니깐, 존재 자체로 문제 해결.
+
+```css
+body {
+  margin: 0;
+}
+
+#wrapper {
+  display: flex;
+  height: 200px;
+}
+
+#wrapper > div {
+  flex-grow: 1;
+}
+
+#wrapper > div:first-of-type { background-color: red }
+#wrapper > div:nth-of-type(2) { background-color: blue }
+#wrapper > div:nth-of-type(3) { bac
+```
+
+```html
+<div id="wrapper">
+  <div id="c1"></div>
+  <div id="c2"></div>
+  <div id="c3"></div>
+</div>
+```
+
+⚠️ 하지만 (mostly fluid pattern 에서처럼) 하나의 container에 3개만 있는게 아니고 & viewport size에 따라 다양한 레이아웃을 주고 싶다면?
+
+그럴땐 직접 width를 한땀 한땀 선언해줘야 하기 때문에 flexbox에만 의존할 수는 없다.
+
+### 방법3. 무적권
+
+무적권 먹히는 방법 그것은 바로 `33.3333333%` 😎
+완벽한 1/3은 아닐지라도 적어도 모든 브라우저에서 지원하므로 백업 코드 용으로 선언해두라는 조언.
