@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="style.css" />
+        <title>tailwindcss</title>
+    </head>
+    <body class="bg-purple-300">
+        <div class="container">
+            <!-- BUTTON COMPONENT -->
+            <button
+                class="bg-purple-500 hover:bg-purple-400 text-while font-bold py-2 px-4 rounded"
+            >
+                find friends
+            </button>
+            <!-- ALERT COMPONENT -->
+            <div
+                class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-5"
+                role="alert"
+            >
+                <strong class="font-bold"></strong>
+                <span class="block sm:inline">
+                    Please update your password!
+                </span>
+            </div>
+            <!-- CARD COMPONENT -->
+            <div
+                class="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl"
+            >
+                <div class="flex-shrink-0">
+                    <img src="img/baepsae.jpeg" alt="" class="h-12 w-12" />
+                </div>
+                <div class="ml-6 pt-1">
+                    <h4 class="text-xl text-gray-9000">Hannah Banana</h4>
+                    <p class="text-base text-gray-600">
+                        You have a new message
+                    </p>
+                </div>
+            </div>
+            <!-- CARD COLUMNS -->
+            <!-- Flex on med screens and up -->
+            <div class="md:flex">
+                <div
+                    class="flex-1 text-gray-700 text-center bg-gray-400 px-5 py-5 m-2 rounded"
+                >
+                    <div class="lg:flex lg:items-center">
+                        <div class="lg:flex-shrink-0">
+                            <img
+                                src="img/baepsae.jpeg"
+                                class="rounded-lg lg:w-64"
+                                alt=""
+                            />
+                        </div>
+                        <div class="mt-4 lg:mt-0 lg:ml-6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
