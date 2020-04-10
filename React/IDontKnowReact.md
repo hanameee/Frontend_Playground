@@ -138,3 +138,39 @@ render() {
 컴포넌트를 적절히 분리하는 것은 중요하다!
 기능, 책임, 재사용성 등으로 컴포넌트를 적절히 분리하여 이슈를 빠르게 파악하고 대응할 수 있도록 개발해야 한다.
 
+----
+
+## [React 적용 가이드 - React 작동 방법](https://d2.naver.com/helloworld/9297403)
+
+### Virtual DOM
+
+#### 1. Virtual DOM rendering
+
+Virtual DOM은 실제 DOM의 구조와 비슷한, React 객체의 트리다. 개발자는 직접 DOM을 제어하지 않고 Virtual DOM을 제어하고, React에서 적절하게 Virtual DOM을 DOM에 반영하는 작업을 한다.
+
+```react
+ ReactDOM.render(
+      <App/>,
+    document.getElementById('root')
+  )
+```
+
+**ReactDOM.render() 함수**를 호출하면 virtual DOM을 만들기 시작한다.
+
+위 jsx 문법은 아래의 JS 코드로 변환된다.
+
+```js
+ ReactDOM.render(
+    React.createElement(App)
+  , document.getElementById('root'));
+```
+
+render() 함수를 호출할 때 React.createElement(App) 객체를 파라미터로 전달하며, render() 함수는 React에서 사용하는 타입의 컴포넌트를 생성한다.
+
+이때 생성하는 컴포넌트는 주로 ReactCompositeComponent 객체와 ReactDOMComponent 객체다. 
+
+| ReactCompositeComponent                           | ReactDOMComponent               |
+| ------------------------------------------------- | ------------------------------- |
+| DOM이 아닌 컴포넌트를 생성할 때 사용하는 컴포넌트 | DOM을 만들 때 생성하는 컴포넌트 |
+
+#### 2. Virtual DOM rendering
