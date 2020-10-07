@@ -12,10 +12,11 @@
 
 ## CSS
 
-| 주제      | 완료 여부 |
-| --------- | --------- |
-| Box model |           |
-| CSS Flex  |           |
-| CSS Grid  |           |
+| 주제                                                         | 완료 여부 |
+| ------------------------------------------------------------ | --------- |
+| [Box model](https://github.com/hanameee/Frontend_Playground/blob/master/CSS/Box-model.md) | ✅         |
+| Position                                                     |           |
+| Flex                                                         |           |
+| Grid                                                         |           |
 
 
